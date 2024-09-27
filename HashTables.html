@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        
+        class HashTable {
+            constructor(size = 50) {
+                this.size = size; 
+                this.buckets = Array(this.size).fill(null).map(() => []); 
+            }
+
+            
+            _hash(key) {
+                let hash = 0;
+                for (let i = 0; i < key.length; i++) {
+                    hash = (hash + key.charCodeAt(i) * i) % this.size;
+                }
+                return hash;
+            }
+
+            
+            set(key, value) {
+                const index = this._hash(key); 
+                const bucket = this.buckets[index]; 
+
+              
+                for (let i = 0; i < bucket.length; i++) {
+                    const [bucketKey] = bucket[i];
+                    if (bucketKey === key) {
+                        bucket[i][1] = value;
+                        return;
+                    }
+                }
+
+                
+                bucket.push([key, value]);
+            }
+
+            
+            get(key) {
+                const index = this._hash(key); 
+                const bucket = this.buckets[index];
+
+               
+                for (let i = 0; i < bucket.length; i++) {
+                    const [bucketKey, bucketValue] = bucket[i];
+                    if (bucketKey === key) {
+                        return bucketValue; 
+                    }
+                }
+
+                
+                return undefined;
+            }
+
+            
+            remove(key) {
+                const index = this._hash(key); 
+                const bucket = this.buckets[index]; 
+
+              
+                for (let i = 0; i < bucket.length; i++) {
+                    const [bucketKey] = bucket[i];
+                    if (bucketKey === key) {
+                        bucket.splice(i, 1); 
+                        return true;
+                    }
+                }
+
+                
+                return false;
+            }
+
+            
+            display() {
+                return this.buckets.filter(bucket => bucket.length > 0);
+            }
+        }
+
+        
+        const hashTable = new HashTable();
+        hashTable.set('name', 'Faisal'); 
+        hashTable.set('age', 30); 
+        hashTable.set('city', 'Lagos'); 
+
+        console.log(hashTable.get('name')); 
+        console.log(hashTable.get('age')); 
+        console.log(hashTable.get('city')); 
+
+        hashTable.remove('age')
+        console.log(hashTable.get('age'))
+
+        console.log(hashTable.display());
+    </script>
+</body>
+
+</html>

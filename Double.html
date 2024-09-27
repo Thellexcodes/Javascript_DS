@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Node {
+            constructor(data) {
+                this.data = data;
+                this.next = null;
+                this.prev = null;
+            }
+        }
+
+        class DoublyLinkedList {
+            constructor() {
+                this.head = null;
+                this.tail = null;
+                this.size = 0;
+            }
+
+            // Add a node at the end of the list
+            append(data) {
+                const newNode = new Node(data);
+
+                if (!this.head) {
+                    this.head = newNode;
+                    this.tail = newNode;
+                } else {
+                    this.tail.next = newNode;
+                    newNode.prev = this.tail;
+                    this.tail = newNode;
+                }
+
+                this.size++;
+            }
+
+            // Add a node at the beginning of the list
+            prepend(data) {
+                const newNode = new Node(data);
+
+                if (!this.head) {
+                    this.head = newNode;
+                    this.tail = newNode;
+                } else {
+                    newNode.next = this.head;
+                    this.head.prev = newNode;
+                    this.head = newNode;
+                }
+
+                this.size++;
+            }
+
+            // Insert a node at a specific index
+            insertAt(index, data) {
+                if (index < 0 || index > this.size) {
+                    return null;
+                }
+
+                const newNode = new Node(data);
+                let current = this.head;
+                let previous;
+
+                if (index === 0) {
+                    this.prepend(data);
+                    return;
+                }
+
+                for (let i = 0; i < index; i++) {
+                    previous = current;
+                    current = current.next;
+                }
+
+                newNode.next = current;
+                newNode.prev = previous;
+                previous.next = newNode;
+                if (current) {
+                    current.prev = newNode;
+                } else {
+                    this.tail = newNode;
+                }
+
+                this.size++;
+            }
+
+            // Remove a node from a specific index
+            removeAt(index) {
+                if (index < 0 || index >= this.size) {
+                    return null;
+                }
+
+                let current = this.head;
+                let previous;
+
+                if (index === 0) {
+                    this.head = current.next;
+
+                    if (this.head) {
+                        this.head.prev = null;
+                    } else {
+                        this.tail = null;
+                    }
+                } else {
+                    for (let i = 0; i < index; i++) {
+                        previous = current;
+                        current = current.next;
+                    }
+
+                    previous.next = current.next;
+
+                    if (current.next) {
+                        current.next.prev = previous;
+                    } else {
+                        this.tail = previous;
+                    }
+                }
+
+                this.size--;
+                return current.data;
+            }
+
+            // Print the list
+            printList() {
+                let current = this.head;
+                let result = '';
+
+                while (current) {
+                    result += current.data + ' <-> ';
+                    current = current.next;
+                }
+
+                console.log(result + 'null');
+            }
+        }
+
+        // Example usage
+        const dll = new DoublyLinkedList();
+        dll.append(10);
+        dll.append(20);
+        dll.append(30);
+        dll.prepend(0);
+        dll.insertAt(2, 15);
+        dll.removeAt(3);
+        dll.printList();
+
+    </script>
+</body>
+
+</html>

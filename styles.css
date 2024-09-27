@@ -1,0 +1,162 @@
+/* styles.css */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.container {
+  display: flex;
+  width: 80%;
+  max-width: 1200px;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.form-container, .task-list-container {
+  padding: 20px;
+}
+
+.form-container {
+  flex: 1;
+  border-right: 2px solid #e0e0e0;
+  background-color: #f7f7f7;
+}
+
+.task-list-container {
+  flex: 2;
+  background-color: #ffffff;
+  height: 600px;
+  overflow: auto;
+}
+
+h1 {
+  margin-top: 0;
+  color: #333333;
+}
+
+input, button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+input:focus, button:focus {
+  outline: none;
+  border-color: #007BFF;
+}
+
+button {
+  background-color: #007BFF;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#taskList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+}
+
+#taskList li {
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background-color 0.3s;
+}
+
+#taskList li:hover {
+  background-color: #f1f1f1;
+}
+
+#taskList li.completed {
+  background-color: #e0ffe0;
+  text-decoration: line-through;
+}
+
+#taskList li .task-info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+#taskList li .task-info strong {
+  font-size: 18px;
+  color: #333333;
+}
+
+#taskList li .task-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666666;
+}
+
+#taskList li .task-info small {
+  font-size: 12px;
+  color: #999999;
+}
+
+#taskList li .task-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#taskList button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#taskList button.complete {
+  background-color: #28a745;
+  color: white;
+}
+
+#taskList button.complete:hover {
+  background-color: #218838;
+}
+
+#taskList button.incomplete {
+  background-color: #ffc107;
+  color: white;
+}
+
+#taskList button.incomplete:hover {
+  background-color: #e0a800;
+}
+
+#taskList button.delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+#taskList button.delete:hover {
+  background-color: #c82333;
+}

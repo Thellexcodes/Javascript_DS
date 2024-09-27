@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Queue{
+
+            constructor(){
+                this.items = [];
+            }
+
+            enqueue(element){
+                this.items.push(element);
+            }
+
+            dequeue(){
+                if(this.items.length === 0)
+                return "Underflow"
+            return this.items.shift();
+            }
+
+            front(){
+                if(this.items.length === 0)
+                return "Empty Queue";
+            return this.items[0];
+            }
+
+            IsEmpty(){
+                return this.items.length === 0;
+            }
+
+            printQueue(){
+                return this.items.toString();
+            }
+        }
+
+        let queue = new Queue();
+        queue.enqueue(10);
+        queue.enqueue(20);
+        queue.enqueue(30);
+        console.log(queue.printQueue());
+        console.log(queue.front())
+        queue.dequeue();
+        console.log(queue.printQueue())
+        console.log(queue.IsEmpty());
+    </script>
+</body>
+</html>
